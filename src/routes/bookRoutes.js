@@ -14,12 +14,12 @@
 
                 mongodb.connect(url, function (err, db) {
                     var collection = db.collection('books');
-                    collection.find({}).toArray(function(err, results) {
+                    collection.find({}).toArray(function (err, results) {
                         res.render('bookListView', {
                             title: 'Books',
                             nav: nav,
                             books: results
-                        });          
+                        });
                     });
                 });
             });
@@ -31,12 +31,14 @@
 
                 mongodb.connect(url, function (err, db) {
                     var collection = db.collection('books');
-                    collection.findOne({_id: id}, function(err, results) {
+                    collection.findOne({
+                        _id: id
+                    }, function (err, results) {
                         res.render('bookView', {
                             title: 'Books',
                             nav: nav,
                             book: results
-                        });          
+                        });
                     });
                 });
             });
