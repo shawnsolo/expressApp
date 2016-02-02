@@ -8,7 +8,7 @@ var goodreadsService = function () {
     var getBookById = function (id, cb) {
         var options = {
             host: 'www.goodreads.com',
-            path: '/book/show/24280?format=xml&key=7A5r8YkP9KewAkCtjmRObA'
+            path: '/book/show/' + id + '?format=xml&key=7A5r8YkP9KewAkCtjmRObA'
         };
 
         var callback = function (response) {
@@ -18,17 +18,13 @@ var goodreadsService = function () {
                 str += chunk;
             });
 
-            response.on('end', function (chunk) {
-                console.log(str);
+            response.on('end', function () {
                 parser.parseString(str, function (err, result) {
-                    cb(null, result);
+                    cb(null, result.GoodreadsResponse.book);
                 });
             });
         };
-        //        http.request(options, callback).end();
-        cb(null, {
-            description: 'Our Description'
-        });
+        http.request(options, callback).end();
     };
     return {
         getBookById: getBookById

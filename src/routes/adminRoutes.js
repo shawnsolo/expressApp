@@ -7,9 +7,10 @@
 
     var books = [
         {
-            title: 'Book 1',
+            title: 'Les Miserables',
+            bookId: 24280,
             genre: 'Fiction',
-            author: 'Shawn',
+            author: 'Victor Hugo',
             read: false
         },
         {
